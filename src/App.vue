@@ -7,6 +7,13 @@
       <option-container title="Restore databases">
         <option-check name="Source database" v-model="restore.source"></option-check>
         <option-check name="Target database" v-model="restore.target"></option-check>
+        <option-check name="Staging database" v-model="restore.staging"></option-check>
+      </option-container>
+
+      <option-container title="DDL Preparations">
+        <option-check name="Source database" v-model="ddl.source"></option-check>
+        <option-check name="Target database" v-model="ddl.target"></option-check>
+        <option-check name="Staging database" v-model="ddl.staging"></option-check>
       </option-container>
       
     </div>
@@ -15,9 +22,10 @@
 
   <div class="p-4 m-4 bg-blue-100 rounded-lg shadow">
     <h2 class="font-semibold text-2xl">Result</h2>
-    <pre><code>
+    <pre style="user-select:contain"><code>
       <restore-db type="source" v-if="restore.source"></restore-db>
       <restore-db type="target" v-if="restore.target"></restore-db>
+      <restore-db type="staging" v-if="restore.staging"></restore-db>
     </code></pre>
   </div>
   
@@ -38,10 +46,12 @@ export default {
   },
   setup() {
 
-    let restore = ref({source: false, target: true});
+    let restore = ref({source: false, target: true, staging: true});
+    let ddl = ref({source: false, target: true, staging: true});
 
     return {
-      restore
+      restore,
+      ddl
     };
   },
 };
