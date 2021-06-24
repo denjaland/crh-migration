@@ -26,6 +26,10 @@
       <restore-db type="source" v-if="restore.source"></restore-db>
       <restore-db type="target" v-if="restore.target"></restore-db>
       <restore-db type="staging" v-if="restore.staging"></restore-db>
+
+      <ddl-db type="source" v-if="ddl.source"></ddl-db>
+      <ddl-db type="target" v-if="ddl.target"></ddl-db>
+      <ddl-db type="staging" v-if="ddl.staging"></ddl-db>
     </code></pre>
   </div>
   
@@ -37,12 +41,14 @@ import {ref} from 'vue'
 import OptionCheck from './components/option-check';
 import OptionContainer from './components/option-container';
 import RestoreDb from './scripts/restore/restore_database';
+import DdlDb from './scripts/ddl/index';
 export default {
   name: "App",
   components: {
     OptionCheck,
     OptionContainer,
-    RestoreDb
+    RestoreDb,
+    DdlDb
   },
   setup() {
 
